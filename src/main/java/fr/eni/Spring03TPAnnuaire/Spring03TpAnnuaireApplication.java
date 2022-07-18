@@ -8,7 +8,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import fr.eni.Spring03TPAnnuaire.bll.Contact;
+import fr.eni.Spring03TPAnnuaire.bll.ContactManager;
 import fr.eni.Spring03TPAnnuaire.bo.Annuaire;
 import fr.eni.Spring03TPAnnuaire.bo.Personne;
 
@@ -17,8 +17,8 @@ import fr.eni.Spring03TPAnnuaire.bo.Personne;
 public class Spring03TpAnnuaireApplication implements CommandLineRunner {
 
 	@Autowired
-	@Qualifier("Contact")
-	private Contact contact;
+	@Qualifier("ContactManager")
+	private ContactManager contactManager;
 	public static void main(String[] args) {
 		SpringApplication.run(Spring03TpAnnuaireApplication.class, args);
 	}
@@ -35,17 +35,17 @@ public class Spring03TpAnnuaireApplication implements CommandLineRunner {
 		Personne personne3 = new Personne("Antoine", "Guillou", "0808080808", 33);
 		Personne personne4 = new Personne("Phileas", "Peron", "090909090909", 14);
 		
-		contact.ajouterContact(personne1, annuaire);
-		contact.ajouterContact(personne2, annuaire);
-		contact.ajouterContact(personne3, annuaire);
-		contact.ajouterContact(personne4, annuaire);
+		contactManager.ajouterContact(personne1, annuaire);
+		contactManager.ajouterContact(personne2, annuaire);
+		contactManager.ajouterContact(personne3, annuaire);
+		contactManager.ajouterContact(personne4, annuaire);
 		System.out.println("Test affichage tous contacts");
-		contact.afficherTousContact(annuaire);
+		contactManager.afficherTousContact(annuaire);
 		System.out.println("Test affichage un contact");
-		contact.afficherUnContact(2, annuaire);
+		contactManager.afficherUnContact(2, annuaire);
 		System.out.println("Test effacer un contact");
-		contact.effacerUnContact(0, annuaire);
-		contact.afficherTousContact(annuaire);		
+		contactManager.effacerUnContact(0, annuaire);
+		contactManager.afficherTousContact(annuaire);		
 	}
 
 }
