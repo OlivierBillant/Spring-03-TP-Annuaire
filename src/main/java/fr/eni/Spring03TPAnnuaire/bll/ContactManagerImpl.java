@@ -20,7 +20,10 @@ public class ContactManagerImpl implements ContactManager {
 
 	@Override
 	public void ajouterContact(Personne personne, ArrayList<Personne> annuaire) {
-		contactDao.insert(personne, annuaire);
+		if (!checkDuplicate(personne, annuaire)) {
+			contactDao.insert(personne, annuaire);
+		} else
+			return;
 	}
 
 	@Override
@@ -36,10 +39,28 @@ public class ContactManagerImpl implements ContactManager {
 	@Override
 	public void effacerUnContact(int id, ArrayList<Personne> annuaire) {
 		contactDao.delete(id, annuaire);
-}
+	}
 
 	@Override
 	public void mettreAJour(Personne personne) {
 	}
 
+	public Boolean checkDuplicate(Personne personne, ArrayList<Personne> annuaire) {
+		Boolean result = false;
+		int compteur = 0;
+		if (annuaire.isEmpty()) {
+			return result;
+		} else {
+			for (int i = 0; i < annuaire.size(); i++) {
+				if (personne.getPrenom().equals(annuaire.get(i).getPrenom())
+						|| personne.getNom().equals(annuaire.get(i).getNom())) {
+					compteur++;
+				}
+			}
+		}
+		if (compteur > 0) {
+			result = true;
+		}
+		return result;
+	}
 }
