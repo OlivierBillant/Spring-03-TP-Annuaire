@@ -48,9 +48,11 @@ public class ContactManagerImpl implements ContactManager {
 	public Boolean checkDuplicate(Personne personne, ArrayList<Personne> annuaire) {
 		Boolean result = false;
 		int compteur = 0;
+//		On laisse passer l'ajout lorsque l'annuaire est vide
 		if (annuaire.isEmpty()) {
 			return result;
 		} else {
+//			Si l'annuaire contient quelque chose, on cherche un éventuel duplicat dans l'annuaire
 			for (int i = 0; i < annuaire.size(); i++) {
 				if (personne.getPrenom().equals(annuaire.get(i).getPrenom())
 						|| personne.getNom().equals(annuaire.get(i).getNom())) {
@@ -58,6 +60,7 @@ public class ContactManagerImpl implements ContactManager {
 				}
 			}
 		}
+//		Si un doublon est trouvé, on passe en true.
 		if (compteur > 0) {
 			result = true;
 		}

@@ -40,6 +40,7 @@ public class Spring03TpAnnuaireApplication implements CommandLineRunner {
 		contactManager.ajouterContact(personne2, annuaire);
 		contactManager.ajouterContact(personne3, annuaire);
 		contactManager.ajouterContact(personne4, annuaire);
+		contactManager.ajouterContact(personne5, annuaire);
 		System.out.println("Test affichage tous contacts");
 		contactManager.afficherTousContact(annuaire);
 		System.out.println("Test affichage un contact");
